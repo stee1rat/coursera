@@ -67,3 +67,7 @@ body{
     right: 15px;
     display: block;
 }
+
+.navbar label {
+    color: white;
+}
