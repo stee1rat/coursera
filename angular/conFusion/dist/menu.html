@@ -23,20 +23,23 @@
   <div class="container">
     <div class="row row-content">
       <div class="col-xs-12">
-        <div class="row row-content" ng-controller="menuController as menuCtrl">
+        <div class="row row-content" ng-controller="MenuController">
           <div class="col-xs-12">
+            <button ng-click="toggleDetails()" class="btn btn-xs btn-primary pull-right" type="button">
+              {{showDetails ? 'Hide Details':'Show Details'}}
+            </button>
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation"
-                 ng-class="{active:menuCtrl.isSelected({{menu.id}})}"
-                 ng-repeat="menu in menuCtrl.menu">
-                <a ng-click="menuCtrl.select(menu.id)"
+                 ng-class="{active:isSelected({{menu.id}})}"
+                 ng-repeat="menu in menu">
+                <a ng-click="select(menu.id)"
                  aria-controls="{{menu.name}}"
                  role="tab">{{menu.text}}</a></li>
             </ul>
 
             <div class="tab-content">
               <ul class="media-list">
-                <li class="media" ng-repeat="dish in menuCtrl.dishes | filter:menuCtrl.filtText">
+                <li class="media" ng-repeat="dish in dishes | filter:filtText">
                   <div class="media-left media-middle">
                     <a href="#">
                       <img class="media-object img-thumbnail" ng-src={{dish.image}} alt="Uthappizza">
@@ -46,7 +49,7 @@
                     <h2 class="media-heading">{{dish.name}}
                    <span class="label label-danger">{{dish.label}}</span>
                    <span class="badge">{{dish.price | currency}}</span></h2>
-                    <p>{{dish.description}}</p>
+                    <p ng-show="showDetails">{{dish.description}}</p>
                   </div>
                 </li>
               </ul>
@@ -56,7 +59,7 @@
       </div>
     </div>
 
-    <script src="scripts/main-2c7ceb18ed.js"></script>
+    <script src="scripts/main-73ed280b06.js"></script>
 </body>
 
 </html>
